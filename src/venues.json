@@ -191,5 +191,9 @@
   {
     "venue": "IEEE Trans. Computers",
     "title": "TC"
+  },
+  {
+    "venue": "CoRR",
+    "title": "ArXiv"
   }
 ]
