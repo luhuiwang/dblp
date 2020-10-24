@@ -16,6 +16,7 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npm.taobao.org/'
+      - run: npm config set sass_binary_site=https://npm.taobao.org/mirrors/node-sass
 
       - name: Cache dependencies
         uses: actions/cache@v2
