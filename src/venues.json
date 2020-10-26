@@ -224,5 +224,25 @@
   },
      {
     "venue": "Middleware"
+  },
+  {
+    "venue": "J. ACM",
+    "title": "JACM"
+  },
+  {
+    "venue": "Proc. IEEE"
+  },
+    {
+    "venue": "ACM Comput. Surv.",
+     "title": "CSUR"
+  },
+    {
+    "venue": "IEEE Commun. Surv. Tutorials",
+      "title": "COMSUR"
+  },
+   {
+    "venue": "Future Gener. Comput. Syst.",
+     "title": "FGCS"
   }
+  
 ]
