@@ -199,5 +199,30 @@
   {
     "venue": "IEEE J. Sel. Areas Commun.",
     "title": "JSAC"
+  },
+    {
+    "venue": "IEEE/ACM Trans. Netw.",
+    "title": "TON"
+  },
+  {
+    "venue": "ICPP"
+  },
+  {
+    "venue": "HotEdge"
+  },
+  {
+    "venue": "HotCloud"
+  },
+  {
+    "venue": "IC2E"
+  },
+  {
+    "venue": "CLOUD"
+  },
+   {
+    "venue": "OpML"
+  },
+     {
+    "venue": "Middleware"
   }
 ]
