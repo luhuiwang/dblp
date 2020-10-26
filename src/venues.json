@@ -195,7 +195,9 @@
   {
     "venue": "CoRR",
     "title": "ArXiv"
-  } , {
-    "venue": "SoCC"
+  },
+  {
+    "venue": "IEEE J. Sel. Areas Commun.",
+    "title": "JSAC"
   }
 ]
