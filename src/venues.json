@@ -195,5 +195,7 @@
   {
     "venue": "CoRR",
     "title": "ArXiv"
+  } , {
+    "venue": "SoCC"
   }
 ]
