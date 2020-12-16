@@ -241,5 +241,19 @@
     "venue": "MLSys"
   },{
   "venue":"SenSys"
+  },{
+  "venue":"CoNEXT"
+  },{
+  "venue":"MobiSys"
+  },{
+  "venue":"IPSN"
+  },{
+  "venue":"ICNP"
+  },{
+  "venue":"IWQoS"
+  },{
+  "venue":"IMC"
   }
+  
+  
 ]
