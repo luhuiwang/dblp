@@ -193,14 +193,10 @@
     "title": "TC"
   },
   {
-    "venue": "CoRR",
-    "title": "ArXiv"
-  },
-  {
     "venue": "IEEE J. Sel. Areas Commun.",
     "title": "JSAC"
   },
-    {
+  {
     "venue": "IEEE/ACM Trans. Netw.",
     "title": "TON"
   },
@@ -216,48 +212,59 @@
   {
     "venue": "CLOUD"
   },
-   {
+  {
     "venue": "OpML"
   },
-     {
+  {
     "venue": "Middleware"
   },
-    {
+  {
     "venue": "ACM Comput. Surv.",
-     "title": "CSUR"
-  },
-    {
-    "venue": "IEEE Commun. Surv. Tutorials",
-      "title": "COMSUR"
-  },
-   {
-    "venue": "Future Gener. Comput. Syst.",
-     "title": "FGCS"
-  },
-     {
-    "venue": "MLSys"
-  },{
-  "venue":"SenSys"
-  },{
-  "venue":"CoNEXT"
-  },{
-  "venue":"MobiSys"
-  },{
-  "venue":"IPSN"
-  },{
-  "venue":"ICNP"
-  },{
-  "venue":"IWQoS"
-  },{
-  "venue":"IMC"
-  },{
-  "venue":"SEC"
-  },{
-  "venue":"FMEC"
+    "title": "CSUR"
   },
   {
-  "venue":"HPDC"
+    "venue": "IEEE Commun. Surv. Tutorials",
+    "title": "COMSUR"
+  },
+  {
+    "venue": "Future Gener. Comput. Syst.",
+    "title": "FGCS"
+  },
+  {
+    "venue": "MLSys"
+  },
+  {
+    "venue": "SenSys"
+  },
+  {
+    "venue": "CoNEXT"
+  },
+  {
+    "venue": "MobiSys"
+  },
+  {
+    "venue": "IPSN"
+  },
+  {
+    "venue": "ICNP"
+  },
+  {
+    "venue": "IWQoS"
+  },
+  {
+    "venue": "IMC"
+  },
+  {
+    "venue": "SEC"
+  },
+  {
+    "venue": "FMEC"
+  },
+  {
+    "venue": "HPDC"
+  },
+  {
+    "venue": "CoRR",
+    "title": "ArXiv"
   }
- 
-  
 ]

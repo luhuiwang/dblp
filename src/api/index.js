@@ -32,7 +32,7 @@ const getVenueItem = venueName => (
 );
 
 export const VENUES_LIST = VenuesDB.map(({ venue }) => venue);
-export const DEFAULT_VENUES_LIST = VENUES_LIST.slice(0, 30);
+export const DEFAULT_VENUES_LIST = VENUES_LIST.slice(0, 100);
 
 export const getVenueTitle = venue => (getVenueItem(venue).title || venue);
 
