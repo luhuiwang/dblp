@@ -2,26 +2,28 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = process.env.NODE_ENV === 'development';
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   entry: {
-    main: './src/index.jsx'
+    main: './src/index.jsx',
   },
   output: {
-    filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'build')
+    filename: devMode ? '[name].js' : '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'build'),
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.html$/,
@@ -29,46 +31,41 @@ module.exports = {
           {
             loader: 'html-loader',
             options: {
-              minimize: !devMode
-            }
-          }
-        ]
+              minimize: !devMode,
+            },
+          },
+        ],
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.css$/,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              minimize: !devMode
-            }
-          },
+          'css-loader',
           'postcss-loader',
-          'sass-loader'
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   plugins: [
-    new CleanWebpackPlugin('build'),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       hash: true,
       template: './src/index.html',
-      filename: './index.html'
+      filename: './index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
+      filename: devMode ? '[name].css' : '[name].[contenthash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
     }),
+    new ESLintPlugin({ extensions: ['tsx', 'ts', 'jsx', 'js'] }),
     new StyleLintPlugin(),
     devMode &&
       new BundleAnalyzerPlugin({
-        analyzerPort: 3333
-      })
+        analyzerPort: 3333,
+      }),
   ].filter(Boolean),
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
-  devtool: 'source-map'
+  devtool: devMode ? 'eval-cheap-module-source-map' : false,
 };

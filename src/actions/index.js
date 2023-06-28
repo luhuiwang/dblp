@@ -1,49 +1,45 @@
 import * as ActionTypes from '../constants';
-import { dblpQuery, normalize } from '../api';
+import { fetchDblpPapers, fetchPaperCitations } from '../api';
 
-const makeActionCreator = (type, ...argNames) => (...args) => {
-  const action = { type };
-  action.payload = {};
+const makeActionCreator =
+  (type, ...argNames) =>
+  (...args) => {
+    const action = { type };
+    action.payload = {};
 
-  argNames.forEach((argName, index) => {
-    action.payload[argNames[index]] = args[index];
-  });
+    argNames.forEach((argName, index) => {
+      action.payload[argNames[index]] = args[index];
+    });
 
-  return action;
-};
+    return action;
+  };
 
-export const filterVenue = makeActionCreator(ActionTypes.FILTER_VENUE, 'venues');
+export const filterVenue = makeActionCreator(
+  ActionTypes.FILTER_VENUE,
+  'venues'
+);
 export const filterYear = makeActionCreator(ActionTypes.FILTER_YEAR, 'year');
 
 const requestData = makeActionCreator(ActionTypes.REQUEST_DATA, 'query');
 const receiveData = makeActionCreator(ActionTypes.RECEIVE_DATA, 'items');
 const requestError = makeActionCreator(ActionTypes.REQUEST_ERROR, 'error');
 
-export const fetchData = (keyword, venues) => (dispatch) => {
+export const fetchData = keyword => async (dispatch, getState) => {
+  const venues = getState().filter.venues;
+
   dispatch(requestData(venues));
 
-  return Promise.all(venues.map(venue => fetch(dblpQuery(keyword, venue), {
-    method: 'GET',
-    mode: 'cors',
-  })))
-    .then(responses => (
-      Promise.all(
-        responses.map((response) => {
-          if (response.ok) {
-            return response.json();
-          }
+  const papers = await fetchDblpPapers(keyword, venues);
+  if (!papers) dispatch(requestError(new Error('Bad Request')));
 
-          return null;
-        }),
-      )
-    ))
-    .then((data) => {
-      if (!data) {
-        dispatch(requestError(new Error('Bad Request')));
-      }
+  const paperCitations = await fetchPaperCitations(papers);
 
-      setTimeout(() => {
-        dispatch(receiveData(normalize(data)));
-      }, 255);
-    });
+  const papersDataWithCitations = papers.map((paper, index) => ({
+    ...paper,
+    citations: paperCitations[index],
+  }));
+
+  setTimeout(() => {
+    dispatch(receiveData(papersDataWithCitations));
+  }, 255);
 };

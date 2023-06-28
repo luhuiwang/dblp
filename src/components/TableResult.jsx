@@ -1,44 +1,51 @@
-
 import React from 'react';
 import { Table } from 'antd';
 
-const TableResult = ({
-  isLoading,
-  dataSource,
-}) => {
+const TableResult = ({ isLoading, dataSource }) => {
   const columns = [
     {
       title: 'Title',
       dataIndex: 'title',
       key: 'title',
-      sorter: (a, b) => (
-        a.title.localeCompare(b.title)
-        || a.venue.localeCompare(b.venue)
-        || b.year.localeCompare(a.year)
-        || a.url.localeCompare(b.url)
-      ),
+      sorter: (a, b) =>
+        a.title.localeCompare(b.title) ||
+        b.citations - a.citations ||
+        b.year.localeCompare(a.year) ||
+        a.venue.localeCompare(b.venue) ||
+        a.url.localeCompare(b.url),
     },
     {
       title: 'Venue',
       dataIndex: 'venue',
       key: 'venue',
-      sorter: (a, b) => (
-        a.venue.localeCompare(b.venue)
-        || b.year.localeCompare(a.year)
-        || a.title.localeCompare(b.title)
-        || a.url.localeCompare(b.url)
-      ),
+      sorter: (a, b) =>
+        a.venue.localeCompare(b.venue) ||
+        b.citations - a.citations ||
+        b.year.localeCompare(a.year) ||
+        a.title.localeCompare(b.title) ||
+        a.url.localeCompare(b.url),
     },
     {
       title: 'Year',
       dataIndex: 'year',
       key: 'year',
-      sorter: (a, b) => (
-        b.year.localeCompare(a.year)
-        || a.venue.localeCompare(b.venue)
-        || a.title.localeCompare(b.title)
-        || a.url.localeCompare(b.url)
-      ),
+      sorter: (a, b) =>
+        b.year.localeCompare(a.year) ||
+        b.citations - a.citations ||
+        a.venue.localeCompare(b.venue) ||
+        a.title.localeCompare(b.title) ||
+        a.url.localeCompare(b.url),
+    },
+    {
+      title: 'Citations',
+      dataIndex: 'citations',
+      key: 'citations',
+      sorter: (a, b) =>
+        b.citations - a.citations ||
+        b.year.localeCompare(a.year) ||
+        a.venue.localeCompare(b.venue) ||
+        a.title.localeCompare(b.title) ||
+        a.url.localeCompare(b.url),
     },
     {
       title: 'Url',
@@ -49,12 +56,12 @@ const TableResult = ({
           {url}
         </a>
       ),
-      sorter: (a, b) => (
-        a.url.localeCompare(b.url)
-        || a.venue.localeCompare(b.venue)
-        || b.year.localeCompare(a.year)
-        || a.title.localeCompare(b.title)
-      ),
+      sorter: (a, b) =>
+        a.url.localeCompare(b.url) ||
+        b.citations - a.citations ||
+        b.year.localeCompare(a.year) ||
+        a.venue.localeCompare(b.venue) ||
+        a.title.localeCompare(b.title),
     },
   ];
 
@@ -68,7 +75,8 @@ const TableResult = ({
         defaultPageSize: 40,
         hideOnSinglePage: true,
         pageSizeOptions: ['20', '40', '60', '80', '100'],
-        showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+        showTotal: (total, range) =>
+          `${range[0]}-${range[1]} of ${total} items`,
         showQuickJumper: true,
         showSizeChanger: true,
       }}
